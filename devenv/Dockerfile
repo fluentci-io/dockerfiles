@@ -8,6 +8,7 @@ ENV PATH=${PATH}:/nix/var/nix/profiles/default/bin
 RUN sed -i 's/auto-allocate-uids = true/auto-allocate-uids = false/g' /etc/nix/nix.conf
 RUN adduser --disabled-password devenv
 RUN addgroup devenv nixbld
+ENV USER=root
 RUN echo "trusted-users = root $USER" | tee -a /etc/nix/nix.conf
 RUN nix profile install --accept-flake-config github:cachix/cachix
 RUN cachix use devenv
