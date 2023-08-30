@@ -10,10 +10,10 @@ RUN adduser --disabled-password devbox
 RUN addgroup devbox nixbld
 ENV FORCE=1
 RUN curl -fsSL https://get.jetpack.io/devbox | bash
+ENV ANDROID_HOME=/root/android-sdk
 RUN mkdir -p $ANDROID_HOME && wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
 RUN cd $ANDROID_HOME && rm -rf cmdline-tools && unzip -d cmdline-tools cmdline-tools.zip && mv cmdline-tools/cmdline-tools cmdline-tools/latest
 ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-ENV ANDROID_HOME=/root/android-sdk
 RUN sdkmanager --version
 RUN sdkmanager platforms;android-33
 RUN yes | sdkmanager --licenses

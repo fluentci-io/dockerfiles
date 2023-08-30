@@ -1,4 +1,4 @@
-import { Dockerfile } from "https://deno.land/x/fluentdocker/mod.ts";
+import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
   .from("alpine:latest")
@@ -15,6 +15,7 @@ const image = new Dockerfile()
   .run("addgroup devbox nixbld")
   .env("FORCE", "1")
   .run("curl -fsSL https://get.jetpack.io/devbox | bash")
+  .env("ANDROID_HOME", "/root/android-sdk")
   .run(
     "mkdir -p $ANDROID_HOME && wget --output-document=$ANDROID_HOME/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip"
   )
@@ -22,7 +23,6 @@ const image = new Dockerfile()
     "cd $ANDROID_HOME && rm -rf cmdline-tools && unzip -d cmdline-tools cmdline-tools.zip && mv cmdline-tools/cmdline-tools cmdline-tools/latest"
   )
   .env("PATH", "$PATH:$ANDROID_HOME/cmdline-tools/latest/bin")
-  .env("ANDROID_HOME", "/root/android-sdk")
   .run("sdkmanager --version")
   .run("sdkmanager platforms;android-33")
   .run("yes | sdkmanager --licenses")
