@@ -7,7 +7,9 @@ const image = new Dockerfile()
   .run(
     "wget -O /usr/local/bin/bazelisk https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64"
   )
-  .cmd("bazelisk --version");
+  .run("chmod +x /usr/local/bin/bazelisk")
+  .run("bazelisk --version")
+  .cmd("bazelisk");
 
 const dockerfile = image.toString();
 

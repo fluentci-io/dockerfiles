@@ -4,4 +4,5 @@ FROM openjdk:22-slim-bookworm
 RUN apt-get update
 RUN apt-get install -y wget build-essential
 RUN wget -O /usr/local/bin/bazelisk https://github.com/bazelbuild/bazelisk/releases/download/v1.18.0/bazelisk-linux-amd64
+RUN chmod +x /usr/local/bin/bazelisk
 CMD bazelisk --version
