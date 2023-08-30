@@ -19,7 +19,6 @@ const image = new Dockerfile()
   .run(
     'nix profile install --impure --experimental-features "nix-command flakes auto-allocate-uids" --accept-flake-config github:flox/floxpkgs#flox.fromCatalog'
   )
-  .run('eval "$(devbox global shellenv)" && node --version')
   .cmd("flox --version");
 
 const dockerfile = image.toString();
