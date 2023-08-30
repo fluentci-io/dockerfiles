@@ -1,4 +1,4 @@
-import { Dockerfile } from "https://deno.land/x/fluentdocker/mod.ts";
+import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
   .from("alpine:latest")

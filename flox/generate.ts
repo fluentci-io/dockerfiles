@@ -1,4 +1,4 @@
-import { Dockerfile } from "https://deno.land/x/fluentdocker/mod.ts";
+import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
   .from("alpine:latest")
@@ -17,7 +17,7 @@ const image = new Dockerfile()
     "echo 'extra-trusted-substituters = https://cache.floxdev.com' | tee -a /etc/nix/nix.conf && echo 'extra-trusted-public-keys = flox-store-public-0:8c/B+kjIaQ+BloCmNkRUKwaVPFWkriSAd0JJvuDu4F0=' | tee -a /etc/nix/nix.conf"
   )
   .run(
-    "nix profile install --impure --experimental-features nix-command flakes auto-allocate-uids --accept-flake-config github:flox/floxpkgs#flox.fromCatalog"
+    'nix profile install --impure --experimental-features "nix-command flakes auto-allocate-uids" --accept-flake-config github:flox/floxpkgs#flox.fromCatalog'
   )
   .run('eval "$(devbox global shellenv)" && node --version')
   .cmd("flox --version");
