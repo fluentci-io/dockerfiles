@@ -15,6 +15,6 @@ RUN mkdir -p $ANDROID_HOME && wget --output-document=$ANDROID_HOME/cmdline-tools
 RUN cd $ANDROID_HOME && rm -rf cmdline-tools && unzip -d cmdline-tools cmdline-tools.zip && mv cmdline-tools/cmdline-tools cmdline-tools/latest
 ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 RUN sdkmanager --version
-RUN sdkmanager platforms;android-33
+RUN sdkmanager "platforms;android-33"
 RUN yes | sdkmanager --licenses
 CMD devbox version

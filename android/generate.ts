@@ -24,7 +24,7 @@ const image = new Dockerfile()
   )
   .env("PATH", "$PATH:$ANDROID_HOME/cmdline-tools/latest/bin")
   .run("sdkmanager --version")
-  .run("sdkmanager platforms;android-33")
+  .run('sdkmanager "platforms;android-33"')
   .run("yes | sdkmanager --licenses")
   .cmd("devbox version");
 
