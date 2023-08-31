@@ -5,4 +5,5 @@ RUN adduser --disabled-password devbox
 RUN addgroup devbox nixbld
 ENV FORCE=1
 RUN curl -fsSL https://get.jetpack.io/devbox | bash
-CMD devbox version
+RUN devbox version
+CMD devbox

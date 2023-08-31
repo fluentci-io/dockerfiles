@@ -9,7 +9,8 @@ const image = new Dockerfile()
   .run("nix profile install --accept-flake-config github:cachix/cachix")
   .run("cachix use devenv")
   .run("nix profile install --accept-flake-config github:cachix/devenv/latest")
-  .cmd("devenv version");
+  .run("devenv version")
+  .cmd("devenv");
 
 const dockerfile = image.toString();
 

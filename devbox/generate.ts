@@ -6,7 +6,8 @@ const image = new Dockerfile()
   .run("addgroup devbox nixbld")
   .env("FORCE", "1")
   .run("curl -fsSL https://get.jetpack.io/devbox | bash")
-  .cmd("devbox version");
+  .run("devbox version")
+  .cmd("devbox");
 
 const dockerfile = image.toString();
 

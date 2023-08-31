@@ -8,4 +8,5 @@ RUN echo "trusted-users = root $USER" | tee -a /etc/nix/nix.conf
 RUN nix profile install --accept-flake-config github:cachix/cachix
 RUN cachix use devenv
 RUN nix profile install --accept-flake-config github:cachix/devenv/latest
-CMD devenv version
+RUN devenv version
+CMD devenv

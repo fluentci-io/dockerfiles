@@ -5,4 +5,5 @@ RUN adduser --disabled-password flox
 RUN addgroup flox nixbld
 RUN echo 'extra-trusted-substituters = https://cache.floxdev.com' | tee -a /etc/nix/nix.conf && echo 'extra-trusted-public-keys = flox-store-public-0:8c/B+kjIaQ+BloCmNkRUKwaVPFWkriSAd0JJvuDu4F0=' | tee -a /etc/nix/nix.conf
 RUN nix profile install --impure --experimental-features "nix-command flakes auto-allocate-uids" --accept-flake-config github:flox/floxpkgs#flox.fromCatalog
-CMD flox --version
+RUN flox --version
+CMD flox

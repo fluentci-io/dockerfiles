@@ -11,7 +11,8 @@ const image = new Dockerfile()
   .run(
     "sed -i 's/auto-allocate-uids = true/auto-allocate-uids = false/g' /etc/nix/nix.conf"
   )
-  .cmd("nix --version");
+  .run("nix --version")
+  .cmd("nix");
 
 const dockerfile = image.toString();
 
