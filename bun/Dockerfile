@@ -10,7 +10,7 @@ RUN adduser --disabled-password devbox
 RUN addgroup devbox nixbld
 ENV FORCE=1
 RUN curl -fsSL https://get.jetpack.io/devbox | bash
-RUN devbox global add yarn nodejs@19.9.0 bun@0.8.1
+RUN devbox global add yarn nodejs@18.17.1 bun@0.8.1
 RUN eval "$(devbox global shellenv)" && bun --version
 RUN eval "$(devbox global shellenv)" && node --version
 CMD devbox version
