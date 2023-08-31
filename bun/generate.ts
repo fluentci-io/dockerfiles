@@ -15,7 +15,7 @@ const image = new Dockerfile()
   .run("addgroup devbox nixbld")
   .env("FORCE", "1")
   .run("curl -fsSL https://get.jetpack.io/devbox | bash")
-  .run("devbox global add yarn nodejs@18.16.1 bun@0.8.1")
+  .run("devbox global add yarn nodejs@19.9.0 bun@0.8.1")
   .run('eval "$(devbox global shellenv)" && bun --version')
   .run('eval "$(devbox global shellenv)" && node --version')
   .cmd("devbox version");
