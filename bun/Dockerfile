@@ -2,7 +2,7 @@
 
 FROM ghcr.io/fluent-ci-templates/devbox:latest
 RUN devbox version
-RUN devbox global add yarn nodejs@18.17.1 bun@0.8.1
+RUN devbox global add yarn nodejs@18.17.1 bun@1.0.0
 RUN eval "$(devbox global shellenv)" && bun --version
 RUN eval "$(devbox global shellenv)" && node --version
 CMD eval "$(devbox global shellenv)" && bun
