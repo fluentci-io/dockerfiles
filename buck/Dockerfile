@@ -4,4 +4,6 @@ FROM rust:latest
 RUN rustup install nightly-2023-05-28
 RUN cargo +nightly-2023-05-28 install --git https://github.com/facebook/buck2.git buck2
 RUN buck2 --version
+RUN rustup install stable
+RUN rustup default stable
 CMD buck2
