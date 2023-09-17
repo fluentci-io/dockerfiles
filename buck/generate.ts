@@ -1,10 +1,13 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
-  .from("ghcr.io/fluent-ci-templates/devbox:latest")
-  .run("devbox global add buck2")
-  .run('eval "$(devbox global shellenv)" && buck2 --version')
-  .cmd('eval "$(devbox global shellenv)" && buck2');
+  .from("rust:latest")
+  .run("rustup install nightly-2023-05-28")
+  .run(
+    "cargo +nightly-2023-05-28 install --git https://github.com/facebook/buck2.git buck2"
+  )
+  .run("buck2 --version")
+  .cmd("buck2");
 
 const dockerfile = image.toString();
 
