@@ -12,6 +12,7 @@ const image = new Dockerfile()
   .run("deno install -A -r https://cli.fluentci.io -n fluentci")
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci --version")
+  .workdir("/workspace")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 

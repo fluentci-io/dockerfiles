@@ -9,5 +9,6 @@ RUN dagger version
 RUN deno install -A -r https://cli.fluentci.io -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci --version
+WORKDIR /workspace
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]
