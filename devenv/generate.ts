@@ -1,7 +1,7 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
-  .from("ghcr.io/fluent-ci-templates/nix:latest")
+  .from("ghcr.io/fluentci-io/nix:latest")
   .run("adduser --disabled-password devenv")
   .run("addgroup devenv nixbld")
   .env("USER", "root")
