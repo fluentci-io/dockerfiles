@@ -3,7 +3,7 @@ import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 const image = new Dockerfile()
   .from("denoland/deno:alpine")
   .run("apk update")
-  .run("apk add --no-cache curl")
+  .run("apk add --no-cache curl docker-cli")
   .run(
     "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.8 sh"
   )
