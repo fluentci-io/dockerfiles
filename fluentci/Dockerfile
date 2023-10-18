@@ -8,4 +8,5 @@ RUN mv bin/dagger /usr/local/bin
 RUN dagger version
 RUN deno install -A -r https://cli.fluentci.io -n fluentci
 RUN fluentci --version
-ENTRYPOINT fluentci
+CMD ["fluentci"]
+ENTRYPOINT ["sh", "-c"]

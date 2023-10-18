@@ -11,7 +11,8 @@ const image = new Dockerfile()
   .run("dagger version")
   .run("deno install -A -r https://cli.fluentci.io -n fluentci")
   .run("fluentci --version")
-  .entrypoint("fluentci");
+  .cmd(["fluentci"])
+  .entrypoint(["sh", "-c"]);
 
 const dockerfile = image.toString();
 
