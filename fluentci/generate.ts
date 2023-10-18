@@ -10,9 +10,10 @@ const image = new Dockerfile()
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
   .run("deno install -A -r https://cli.fluentci.io -n fluentci")
+  .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci --version")
   .cmd(["fluentci"])
-  .entrypoint(["sh", "-c"]);
+  .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
 const dockerfile = image.toString();
 

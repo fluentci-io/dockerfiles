@@ -7,6 +7,7 @@ RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.8 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
 RUN deno install -A -r https://cli.fluentci.io -n fluentci
+COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci --version
 CMD ["fluentci"]
-ENTRYPOINT ["sh", "-c"]
+ENTRYPOINT ["/tini", "--", "entrypoint.sh"]
