@@ -1,10 +1,15 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
-  .from("homebrew/brew:latest")
-  .run("brew install fluentci-io/tap/fluentci")
+  .from("denoland/deno:alpine")
+  .run(
+    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.8 sh"
+  )
+  .run("mv bin/dagger /usr/local/bin")
+  .run("dagger version")
+  .run("deno install -A -r https://cli.fluentci.io -n fluentci")
   .run("fluentci --version")
-  .cmd("fluentci");
+  .entrypoint("fluentci");
 
 const dockerfile = image.toString();
 
