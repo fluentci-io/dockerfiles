@@ -9,6 +9,10 @@ RUN unzip watchman-v2023.10.23.00-linux.zip
 RUN chmod +x watchman-v2023.10.23.00-linux/bin/*
 RUN cp watchman-v2023.10.23.00-linux/bin/* /usr/local/bin
 RUN cp watchman-v2023.10.23.00-linux/lib/* /usr/local/lib
+RUN wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz
+RUN tar xvf openssl-1.1.1o.tar.gz
+RUN cd openssl-1.1.1o && ./config && make && make install
+RUN cp libcrypto.so.1.1 /usr/lib
 RUN echo 'eval $(rtx activate bash)' >> ~/.bashrc
 RUN rtx install java@zulu-17.46.19
 RUN rtx global java@zulu-17.46.19
