@@ -26,7 +26,7 @@ const image = new Dockerfile()
     "cd $ANDROID_HOME && rm -rf cmdline-tools && unzip -d cmdline-tools cmdline-tools.zip && mv cmdline-tools/cmdline-tools cmdline-tools/latest"
   )
   .env("PATH", "${ANDROID_HOME}/cmdline-tools/latest/bin:${PATH}")
-  .run("sdkmanager platforms;android-33")
+  .run('sdkmanager "platforms;android-33"')
   .run("yes | sdkmanager --licenses")
   .cmd("bash -i");
 
