@@ -6,6 +6,7 @@ RUN apt-get install -y build-essential ruby ruby-dev
 RUN pkgx install bun node unzip rtx wget
 RUN wget https://github.com/facebook/watchman/releases/download/v2023.10.23.00/watchman-v2023.10.23.00-linux.zip
 RUN unzip watchman-v2023.10.23.00-linux.zip
+RUN chmod +x watchman-v2023.10.23.00-linux/bin/*
 RUN cp watchman-v2023.10.23.00-linux/bin/* /usr/local/bin
 RUN cp watchman-v2023.10.23.00-linux/lib/* /usr/local/lib
 RUN echo 'eval $(rtx activate bash)' >> ~/.bashrc

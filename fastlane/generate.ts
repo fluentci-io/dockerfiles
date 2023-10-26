@@ -9,6 +9,7 @@ const image = new Dockerfile()
     "wget https://github.com/facebook/watchman/releases/download/v2023.10.23.00/watchman-v2023.10.23.00-linux.zip"
   )
   .run("unzip watchman-v2023.10.23.00-linux.zip")
+  .run("chmod +x watchman-v2023.10.23.00-linux/bin/*")
   .run("cp watchman-v2023.10.23.00-linux/bin/* /usr/local/bin")
   .run("cp watchman-v2023.10.23.00-linux/lib/* /usr/local/lib")
   .run("echo 'eval $(rtx activate bash)' >> ~/.bashrc")
