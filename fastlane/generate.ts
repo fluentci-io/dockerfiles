@@ -14,8 +14,9 @@ const image = new Dockerfile()
   .run("cp watchman-v2023.10.23.00-linux/lib/* /usr/local/lib")
   .run("wget https://www.openssl.org/source/openssl-1.1.1o.tar.gz")
   .run("tar xvf openssl-1.1.1o.tar.gz")
-  .run("cd openssl-1.1.1o && ./config && make && make install")
-  .run("cp libcrypto.so.1.1 /usr/lib")
+  .run(
+    "cd openssl-1.1.1o && ./config && make && make install && cp libcrypto.so.1.1 /usr/lib"
+  )
   .run("watchman --version")
   .run("echo 'eval $(rtx activate bash)' >> ~/.bashrc")
   .run("rtx install java@zulu-17.46.19")
