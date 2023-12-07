@@ -26,7 +26,7 @@ const image = new Dockerfile()
   .run("sdkmanager --version")
   .run('sdkmanager "platforms;android-33"')
   .run("yes | sdkmanager --licenses")
-  .cmd("devbox version");
+  .run("devbox version");
 
 const dockerfile = image.toString();
 
