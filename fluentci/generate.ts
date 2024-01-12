@@ -5,7 +5,7 @@ const image = new Dockerfile()
   .run("apk update")
   .run("apk add --no-cache curl docker-cli")
   .run(
-    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.8 sh"
+    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.9.3 sh"
   )
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
