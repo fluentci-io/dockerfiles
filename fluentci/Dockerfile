@@ -3,7 +3,7 @@
 FROM denoland/deno:alpine
 RUN apk update
 RUN apk add --no-cache curl docker-cli
-RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.8.8 sh
+RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.9.3 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
 RUN deno install -A -r https://cli.fluentci.io -n fluentci
