@@ -7,7 +7,7 @@ on:
     - cron: "0 * * * *"
   workflow_dispatch:
   push:
-    branches: ["latest"]
+    branches: ["latest", "main"]
     paths:
       - "android/**"
       - ".github/workflows/publish-android.yml"
