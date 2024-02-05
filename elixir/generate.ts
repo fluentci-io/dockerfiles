@@ -4,8 +4,8 @@ const image = new Dockerfile()
   .from("ghcr.io/fluentci-io/devbox:latest")
   .run("devbox version")
   .run("devbox global add elixir")
-  .run('eval "$(devbox global shellenv)" && elixir --version')
-  .cmd('eval "$(devbox global shellenv)" && elixir');
+  .run('eval "$(devbox global shellenv --recompute)" && elixir --version')
+  .cmd('eval "$(devbox global shellenv --recompute)" && elixir');
 
 const dockerfile = image.toString();
 

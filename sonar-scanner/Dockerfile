@@ -2,5 +2,5 @@
 
 FROM ghcr.io/fluentci-io/devbox:latest
 RUN devbox global add sonar-scanner-cli nodejs
-RUN eval "$(devbox global shellenv)" && sonar-scanner --version
-CMD eval "$(devbox global shellenv)" && sonar-scanner
+RUN eval "$(devbox global shellenv --recompute)" && sonar-scanner --version
+CMD eval "$(devbox global shellenv --recompute)" && sonar-scanner

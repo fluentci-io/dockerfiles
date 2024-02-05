@@ -4,8 +4,8 @@ const image = new Dockerfile()
   .from("ghcr.io/fluentci-io/devbox:latest")
   .run("devbox version")
   .run("devbox global add leiningen clojure")
-  .run('eval "$(devbox global shellenv)" && lein --version')
-  .cmd('eval "$(devbox global shellenv)" && lein');
+  .run('eval "$(devbox global shellenv --recompute)" && lein --version')
+  .cmd('eval "$(devbox global shellenv --recompute)" && lein');
 
 const dockerfile = image.toString();
 

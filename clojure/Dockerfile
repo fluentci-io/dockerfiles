@@ -3,5 +3,5 @@
 FROM ghcr.io/fluentci-io/devbox:latest
 RUN devbox version
 RUN devbox global add leiningen clojure
-RUN eval "$(devbox global shellenv)" && lein --version
-CMD eval "$(devbox global shellenv)" && lein
+RUN eval "$(devbox global shellenv --recompute)" && lein --version
+CMD eval "$(devbox global shellenv --recompute)" && lein

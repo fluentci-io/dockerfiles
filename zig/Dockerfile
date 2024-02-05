@@ -2,5 +2,5 @@
 
 FROM ghcr.io/fluentci-io/devbox:latest
 RUN devbox global add zig@0.10.1
-RUN eval "$(devbox global shellenv)" && zig version
-CMD eval "$(devbox global shellenv)" && zig
+RUN eval "$(devbox global shellenv --recompute)" && zig version
+CMD eval "$(devbox global shellenv --recompute)" && zig

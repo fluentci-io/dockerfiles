@@ -4,8 +4,8 @@ const image = new Dockerfile()
   .from("ghcr.io/fluentci-io/devbox:latest")
   .run("devbox version")
   .run("devbox global add gradle")
-  .run('eval "$(devbox global shellenv)" && gradle --version')
-  .cmd('eval "$(devbox global shellenv)" && gradle');
+  .run('eval "$(devbox global shellenv --recompute)" && gradle --version')
+  .cmd('eval "$(devbox global shellenv --recompute)" && gradle');
 
 const dockerfile = image.toString();
 

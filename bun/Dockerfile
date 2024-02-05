@@ -3,6 +3,6 @@
 FROM ghcr.io/fluentci-io/devbox:latest
 RUN devbox version
 RUN devbox global add yarn nodejs@18.17.1 bun@1.0.0
-RUN eval "$(devbox global shellenv)" && bun --version
-RUN eval "$(devbox global shellenv)" && node --version
-CMD eval "$(devbox global shellenv)" && bun
+RUN eval "$(devbox global shellenv --recompute)" && bun --version
+RUN eval "$(devbox global shellenv --recompute)" && node --version
+CMD eval "$(devbox global shellenv --recompute)" && bun

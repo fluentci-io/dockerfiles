@@ -3,5 +3,5 @@
 FROM ghcr.io/fluentci-io/devbox:latest
 RUN devbox version
 RUN devbox global add gradle
-RUN eval "$(devbox global shellenv)" && gradle --version
-CMD eval "$(devbox global shellenv)" && gradle
+RUN eval "$(devbox global shellenv --recompute)" && gradle --version
+CMD eval "$(devbox global shellenv --recompute)" && gradle
