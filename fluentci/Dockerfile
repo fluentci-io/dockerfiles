@@ -18,6 +18,7 @@ RUN mv bin/dagger /usr/local/bin
 RUN dagger version
 RUN deno install -A -r https://cli.fluentci.io -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
+RUN fluentci upgrade
 RUN fluentci --version
 WORKDIR /workspace
 CMD ["fluentci"]
