@@ -7,7 +7,7 @@ if [ "$1" != "${1#-}" ]; then
 fi
 
 case "$1" in
-    run | init | search | upgrade | cache | ls | doctor | docs | man | agent | whoami | publish | env | login | project | studio )
+    run | init | search | upgrade | cache | ls | list | agent | doctor | docs | man | agent | whoami | publish | env | login | project | studio )
     # if the first argument is a known fluentci command
     exec fluentci "$@";;
 esac
