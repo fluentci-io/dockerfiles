@@ -9,7 +9,7 @@ fi
 case "$1" in
     run | init | search | upgrade | cache | ls | list | agent | doctor | docs | man | agent | whoami | publish | env | login | project | studio )
     # if the first argument is a known fluentci command
-    exec sudo fluentci "$@";;
+    exec fluentci "$@";;
 esac
 
 exec "$@"

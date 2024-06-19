@@ -39,8 +39,7 @@ const image = new Dockerfile()
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci upgrade")
   .run("fluentci --version")
-  .user("${USER}")
-  .workdir("/home/${USER}")
+  .workdir("/root")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 

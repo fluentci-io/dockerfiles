@@ -30,7 +30,6 @@ RUN deno install -A -r -g https://cli.fluentci.io -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci upgrade
 RUN fluentci --version
-USER ${USER}
-WORKDIR /home/${USER}
+WORKDIR /root
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]
