@@ -2,6 +2,8 @@ import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
   .from("denoland/deno:ubuntu-1.44.0")
+  .run("apt-get update")
+  .run("apt-get install -y curl wget git sudo")
   .arg("USER", "fluentci")
   .arg("USER_ID", "30033")
   .arg("GROUP_ID", "30033")
@@ -12,8 +14,6 @@ const image = new Dockerfile()
   && chmod 0440 /etc/sudoers.d/\${USER}`
   )
   .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}")
-  .run("apt-get update")
-  .run("apt-get install -y curl wget git")
   .run(
     "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.1/fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz"
   )
