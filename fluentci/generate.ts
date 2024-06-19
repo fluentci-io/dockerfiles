@@ -1,7 +1,17 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const image = new Dockerfile()
-  .from("denoland/deno:debian-1.44.0")
+  .from("denoland/deno:ubuntu-1.44.0")
+  .arg("USER", "fluentci")
+  .arg("USER_ID", "30033")
+  .arg("GROUP_ID", "30033")
+  .run(
+    `addgroup --gid $GROUP_ID \${USER} \\
+  && useradd --groups sudo --no-create-home --shell /bin/bash \${USER} --uid \${USER_ID} --gid \${GROUP_ID} \\
+  && echo "\${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/\${USER} \\
+  && chmod 0440 /etc/sudoers.d/\${USER}`
+  )
+  .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}")
   .run("apt-get update")
   .run("apt-get install -y curl wget git")
   .run(
@@ -27,7 +37,8 @@ const image = new Dockerfile()
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci upgrade")
   .run("fluentci --version")
-  .workdir("/workspace")
+  .user("${USER}")
+  .workdir("/home/${USER}")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
