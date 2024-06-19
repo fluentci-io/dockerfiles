@@ -16,8 +16,9 @@ RUN fluentci-engine --version
 RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.7 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
-RUN deno install -A -r -g https://deno.land/x/fluentci -n fluentci
+RUN deno install -A -r -g https://cli.fluentci.io -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
+RUN fluentci upgrade
 RUN fluentci --version
 WORKDIR /workspace
 CMD ["fluentci"]
