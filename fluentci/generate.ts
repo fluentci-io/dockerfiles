@@ -3,7 +3,7 @@ import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 const image = new Dockerfile()
   .from("denoland/deno:alpine-1.44.0")
   .run("apk update")
-  .run("apk add --no-cache curl docker-cli wget bash")
+  .run("apk add --no-cache curl docker-cli wget bash git libstdc++")
   .run(
     "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.1/fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz"
   )

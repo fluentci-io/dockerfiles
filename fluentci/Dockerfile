@@ -2,7 +2,7 @@
 
 FROM denoland/deno:alpine-1.44.0
 RUN apk update
-RUN apk add --no-cache curl docker-cli wget bash
+RUN apk add --no-cache curl docker-cli wget bash git
 RUN wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.1/fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz
 RUN tar xvf fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz
 RUN mv fluentci-engine /usr/local/bin
