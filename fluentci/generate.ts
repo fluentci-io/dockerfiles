@@ -3,7 +3,7 @@ import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 const image = new Dockerfile()
   .from("denoland/deno:ubuntu-1.44.0")
   .run("apt-get update")
-  .run("apt-get install -y curl wget git sudo")
+  .run("apt-get install -y curl wget git sudo build-essentials")
   .run("curl https://pkgx.sh | sh")
   .run("pkgx install docker.com/cli")
   .arg("USER", "fluentci")

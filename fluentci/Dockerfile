@@ -2,7 +2,7 @@
 
 FROM denoland/deno:ubuntu-1.44.0
 RUN apt-get update
-RUN apt-get install -y curl wget git sudo
+RUN apt-get install -y curl wget git sudo build-essentials
 RUN curl https://pkgx.sh | sh
 RUN pkgx install docker.com/cli
 ARG USER=fluentci
