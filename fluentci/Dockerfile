@@ -2,7 +2,7 @@
 
 FROM denoland/deno:ubuntu-1.44.0
 RUN apt-get update
-RUN apt-get install -y curl wget git sudo build-essentials
+RUN apt-get install -y curl wget git sudo build-essential
 RUN curl https://pkgx.sh | sh
 RUN pkgx install docker.com/cli
 ARG USER=fluentci
@@ -13,14 +13,14 @@ RUN addgroup --gid $GROUP_ID ${USER} \
   && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
   && chmod 0440 /etc/sudoers.d/${USER}
 RUN mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}
-RUN wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.1/fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz
-RUN tar xvf fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz
+RUN wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.2/fluentci-engine_v0.4.2_x86_64-unknown-linux-gnu.tar.gz
+RUN tar xvf fluentci-engine_v0.4.2_x86_64-unknown-linux-gnu.tar.gz
 RUN mv fluentci-engine /usr/local/bin
-RUN rm fluentci-engine_v0.4.1_x86_64-unknown-linux-gnu.tar.gz
-RUN wget https://dl.fluentci.io/fluentci-studio/v0.1.2/fluentci-studio_v0.1.2_x86_64-unknown-linux-gnu.tar.gz
-RUN tar xvf fluentci-studio_v0.1.2_x86_64-unknown-linux-gnu.tar.gz
+RUN rm fluentci-engine_v0.4.2_x86_64-unknown-linux-gnu.tar.gz
+RUN wget https://dl.fluentci.io/fluentci-studio/v0.1.3/fluentci-studio_v0.1.3_x86_64-unknown-linux-gnu.tar.gz
+RUN tar xvf fluentci-studio_v0.1.3_x86_64-unknown-linux-gnu.tar.gz
 RUN mv fluentci-studio /usr/local/bin
-RUN rm fluentci-studio_v0.1.2_x86_64-unknown-linux-gnu.tar.gz
+RUN rm fluentci-studio_v0.1.3_x86_64-unknown-linux-gnu.tar.gz
 RUN which fluentci-studio
 RUN fluentci-engine --version
 RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.7 sh
