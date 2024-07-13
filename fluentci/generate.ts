@@ -31,7 +31,7 @@ const image = new Dockerfile()
   .run("which fluentci-studio")
   .run("fluentci-engine --version")
   .run(
-    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.7 sh"
+    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh"
   )
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")

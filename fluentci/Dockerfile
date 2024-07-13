@@ -23,7 +23,7 @@ RUN mv fluentci-studio /usr/local/bin
 RUN rm fluentci-studio_v0.1.6_x86_64-unknown-linux-gnu.tar.gz
 RUN which fluentci-studio
 RUN fluentci-engine --version
-RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.11.7 sh
+RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
 RUN deno install -A -r -g https://cli.fluentci.io -n fluentci
