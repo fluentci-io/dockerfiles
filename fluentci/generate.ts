@@ -17,11 +17,11 @@ const image = new Dockerfile()
   )
   .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}")
   .run(
-    "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.5/fluentci-engine_v0.4.5_x86_64-unknown-linux-gnu.tar.gz"
+    "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.6/fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz"
   )
-  .run("tar xvf fluentci-engine_v0.4.5_x86_64-unknown-linux-gnu.tar.gz")
+  .run("tar xvf fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz")
   .run("mv fluentci-engine /usr/local/bin")
-  .run("rm fluentci-engine_v0.4.5_x86_64-unknown-linux-gnu.tar.gz")
+  .run("rm fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz")
   .run(
     "wget https://dl.fluentci.io/fluentci-studio/v0.1.6/fluentci-studio_v0.1.6_x86_64-unknown-linux-gnu.tar.gz"
   )
