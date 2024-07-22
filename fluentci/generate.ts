@@ -15,7 +15,7 @@ const image = new Dockerfile()
   && echo "\${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/\${USER} \\
   && chmod 0440 /etc/sudoers.d/\${USER}`
   )
-  .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER}")
+  .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER} /root")
   .run(
     "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.6/fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz"
   )
