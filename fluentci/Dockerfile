@@ -13,10 +13,10 @@ RUN addgroup --gid $GROUP_ID ${USER} \
   && echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
   && chmod 0440 /etc/sudoers.d/${USER}
 RUN mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER} /root
-RUN wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.6/fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz
-RUN tar xvf fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz
+RUN wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.7/fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz
+RUN tar xvf fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz
 RUN mv fluentci-engine /usr/local/bin
-RUN rm fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz
+RUN rm fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz
 RUN wget https://dl.fluentci.io/fluentci-studio/v0.1.6/fluentci-studio_v0.1.6_x86_64-unknown-linux-gnu.tar.gz
 RUN tar xvf fluentci-studio_v0.1.6_x86_64-unknown-linux-gnu.tar.gz
 RUN mv fluentci-studio /usr/local/bin
