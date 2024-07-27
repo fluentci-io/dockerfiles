@@ -26,7 +26,7 @@ RUN fluentci-engine --version
 RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
-RUN deno install -A -r -g https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci
+RUN deno install -A -r -g --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/import_map.json  https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci upgrade
 RUN fluentci --version
