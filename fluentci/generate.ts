@@ -1,9 +1,14 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
+const DOCKER_VERSION = Deno.env.get("DOCKER_VERSION") || "27";
+
 const image = new Dockerfile()
   .from("denoland/deno:ubuntu-1.44.0")
   .run("apt-get update")
   .run("apt-get install -y curl wget git sudo build-essential")
+  .run(
+    "apt-get install -y --no-install-recommends ca-certificates iptables openssl pigz xz-utils"
+  )
   .run("curl https://pkgx.sh | sh")
   .run("pkgx install docker.com/cli")
   .arg("USER", "fluentci")
@@ -17,11 +22,11 @@ const image = new Dockerfile()
   )
   .run("mkdir -p /home/${USER} && chown -R ${USER}:${USER} /home/${USER} /root")
   .run(
-    "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.6/fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz"
+    "wget https://github.com/fluentci-io/fluentci-engine/releases/download/v0.4.7/fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz"
   )
-  .run("tar xvf fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz")
+  .run("tar xvf fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz")
   .run("mv fluentci-engine /usr/local/bin")
-  .run("rm fluentci-engine_v0.4.6_x86_64-unknown-linux-gnu.tar.gz")
+  .run("rm fluentci-engine_v0.4.7_x86_64-unknown-linux-gnu.tar.gz")
   .run(
     "wget https://dl.fluentci.io/fluentci-studio/v0.1.6/fluentci-studio_v0.1.6_x86_64-unknown-linux-gnu.tar.gz"
   )
@@ -35,11 +40,19 @@ const image = new Dockerfile()
   )
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
-  .run("deno install -A -r -g https://cli.fluentci.io -n fluentci")
+  .run(
+    "deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json  https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci"
+  )
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
-  .run("fluentci upgrade")
   .run("fluentci --version")
   .workdir("/root")
+  .env("DOCKER_TLS_CERTDIR", "/certs")
+  .run("mkdir /certs /certs/client && chmod 1777 /certs /certs/client")
+  .copy(
+    `--from=docker:${DOCKER_VERSION}-dind /usr/local/bin/`,
+    "/usr/local/bin/"
+  )
+  .volume("/var/lib/docker")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
