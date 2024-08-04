@@ -1,9 +1,11 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const DOCKER_VERSION = Deno.env.get("DOCKER_VERSION") || "27";
+const DAGGER_VERSION = Deno.env.get("DAGGER_VERSION") || "0.12.4";
+const DENO_VERSION = Deno.env.get("DENO_VERSION") || "1.45.5";
 
 const image = new Dockerfile()
-  .from("denoland/deno:ubuntu-1.44.0")
+  .from(`denoland/deno:ubuntu-${DENO_VERSION}`)
   .run("apt-get update")
   .run("apt-get install -y curl wget git sudo build-essential")
   .run(
@@ -36,7 +38,7 @@ const image = new Dockerfile()
   .run("which fluentci-studio")
   .run("fluentci-engine --version")
   .run(
-    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh"
+    `curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=${DAGGER_VERSION} sh`
   )
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
