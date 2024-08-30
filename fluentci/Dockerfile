@@ -27,7 +27,7 @@ RUN fluentci-engine --version
 RUN curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.4 sh
 RUN mv bin/dagger /usr/local/bin
 RUN dagger version
-RUN deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json  https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci
+RUN deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json  https://github.com/fluentci-io/fluentci/raw/feat/new-project-from-examples/main.ts -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci --version
 WORKDIR /root
