@@ -43,7 +43,7 @@ const image = new Dockerfile()
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
   .run(
-    "deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json  https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci"
+    "deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json https://github.com/fluentci-io/fluentci/raw/feat/new-project-from-examples/main.ts -n fluentci"
   )
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci --version")
