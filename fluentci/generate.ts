@@ -71,6 +71,12 @@ const image = new Dockerfile()
   .run("mkdir -p /home/${USER}/.deno/bin")
   .env("PATH", "${PATH}:/home/${USER}/.deno/bin")
   .env("PATH", "${PATH}:/home/${USER}/.local/bin")
+  .env("PATH", "${PATH}:/home/${USER}/.rye/shims")
+  .env("PATH", "${PATH}:/home/${USER}/.local/share/mise/shims")
+  .env("PATH", "${PATH}:/home/${USER}/.moon/bin")
+  .env("PATH", "${PATH}:/home/${USER}/.nix-profile/bin")
+  .env("PATH", "${PATH}:/home/${USER}/.arkade/bin")
+  .env("PATH", "${PATH}:/home/${USER}/.version-fox/shims")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
