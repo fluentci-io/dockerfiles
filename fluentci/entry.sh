@@ -12,7 +12,7 @@ case "$1" in
 
     DOCKER_SOCKET="/var/run/docker.sock"
 
-    while ! sudo test -S "$SOCKET_FILE"; do
+    while ! sudo test -S "$DOCKER_SOCKET"; do
       echo "Waiting for socket file to be created..."
       sleep 1  # Wait for 1 second before checking again
     done
