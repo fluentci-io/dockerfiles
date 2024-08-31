@@ -43,5 +43,6 @@ ENV DENO_DIR=/home/${USER}/.deno
 USER ${USER}
 RUN mkdir -p /home/${USER}/.deno/bin
 ENV PATH=${PATH}:/home/${USER}/.deno/bin
+ENV PATH=${PATH}:/home/${USER}/.local/bin
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]

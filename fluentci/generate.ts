@@ -70,6 +70,7 @@ const image = new Dockerfile()
   .user("${USER}")
   .run("mkdir -p /home/${USER}/.deno/bin")
   .env("PATH", "${PATH}:/home/${USER}/.deno/bin")
+  .env("PATH", "${PATH}:/home/${USER}/.local/bin")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
