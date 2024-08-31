@@ -66,7 +66,9 @@ const image = new Dockerfile()
     "/usr/local/bin/"
   )
   .volume("/var/lib/docker")
+  .env("DENO_DIR", "/home/${USER}/.deno")
   .user("${USER}")
+  .run("mkdir -p /home/${USER}/.deno")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 

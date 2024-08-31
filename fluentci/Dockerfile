@@ -39,6 +39,8 @@ ENV DOCKER_TLS_CERTDIR=/certs
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
 COPY --from=docker:27-dind /usr/local/bin/ /usr/local/bin/
 VOLUME /var/lib/docker
+ENV DENO_DIR=/home/${USER}/.deno
 USER ${USER}
+RUN mkdir -p /home/${USER}/.deno
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]
