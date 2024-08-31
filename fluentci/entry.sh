@@ -17,6 +17,7 @@ case "$1" in
       sleep 1  # Wait for 1 second before checking again
     done
 
+    sudo fluentci upgrade
     sudo chown -R `whoami` $DOCKER_SOCKET
     sudo chown -R `whoami` /home/fluentci
     sudo chown -R `whoami` /nix/var
