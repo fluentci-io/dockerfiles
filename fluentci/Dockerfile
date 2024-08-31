@@ -44,5 +44,11 @@ USER ${USER}
 RUN mkdir -p /home/${USER}/.deno/bin
 ENV PATH=${PATH}:/home/${USER}/.deno/bin
 ENV PATH=${PATH}:/home/${USER}/.local/bin
+ENV PATH=${PATH}:/home/${USER}/.rye/shims
+ENV PATH=${PATH}:/home/${USER}/.local/share/mise/shims
+ENV PATH=${PATH}:/home/${USER}/.moon/bin
+ENV PATH=${PATH}:/home/${USER}/.nix-profile/bin
+ENV PATH=${PATH}:/home/${USER}/.arkade/bin
+ENV PATH=${PATH}:/home/${USER}/.version-fox/shims
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]
