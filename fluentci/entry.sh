@@ -12,14 +12,13 @@ case "$1" in
 
     DOCKER_SOCKET="/var/run/docker.sock"
 
-    while [ ! -S "$DOCKER_SOCKET" ]; do
+    while ! sudo test -S "$SOCKET_FILE"; do
       echo "Waiting for socket file to be created..."
       sleep 1  # Wait for 1 second before checking again
     done
 
     sudo chown -R `whoami` $DOCKER_SOCKET
-    sudo chown -R `whoami` ~/*
-    sudo chown -R `whoami` ~/.fluentci ~/.cache ~/.cargo ~/.rustup ~/.local || true
+    sudo chown -R `whoami` /home/fluentci
     # if the first argument is a known fluentci command
     exec fluentci "$@";;
 esac
