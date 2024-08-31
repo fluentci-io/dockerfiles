@@ -4,6 +4,9 @@ FROM denoland/deno:ubuntu-1.45.5
 RUN apt-get update
 RUN apt-get install -y curl wget git sudo build-essential
 RUN apt-get install -y --no-install-recommends ca-certificates iptables openssl pigz xz-utils
+RUN curl --proto =https --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --extra-conf "sandbox = false" --init none --no-confirm
+ENV PATH=${PATH}:/nix/var/nix/profiles/default/bin
+RUN sed -i 's/auto-allocate-uids = true/auto-allocate-uids = false/g' /etc/nix/nix.conf
 RUN curl https://pkgx.sh | sh
 RUN pkgx install docker.com/cli
 ARG USER=fluentci
