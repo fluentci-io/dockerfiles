@@ -30,10 +30,11 @@ RUN dagger version
 RUN deno install -A -r -g https://cli.fluentci.io -n fluentci
 COPY entry.sh /usr/local/bin/entrypoint.sh
 RUN fluentci --version
-WORKDIR /root
+WORKDIR /home/${USER}
 ENV DOCKER_TLS_CERTDIR=/certs
 RUN mkdir /certs /certs/client && chmod 1777 /certs /certs/client
 COPY --from=docker:27-dind /usr/local/bin/ /usr/local/bin/
 VOLUME /var/lib/docker
+USER ${USER}
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]

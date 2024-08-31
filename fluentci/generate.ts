@@ -50,7 +50,7 @@ const image = new Dockerfile()
   .run("deno install -A -r -g https://cli.fluentci.io -n fluentci")
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci --version")
-  .workdir("/root")
+  .workdir("/home/${USER}")
   .env("DOCKER_TLS_CERTDIR", "/certs")
   .run("mkdir /certs /certs/client && chmod 1777 /certs /certs/client")
   .copy(
@@ -58,6 +58,7 @@ const image = new Dockerfile()
     "/usr/local/bin/"
   )
   .volume("/var/lib/docker")
+  .user("${USER}")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
