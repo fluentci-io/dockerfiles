@@ -18,6 +18,7 @@ const image = new Dockerfile()
   .run(
     "sed -i 's/auto-allocate-uids = true/auto-allocate-uids = false/g' /etc/nix/nix.conf"
   )
+  .run("chmod -R 755 /nix/var/nix/profiles/per-user")
   .run("curl https://pkgx.sh | sh")
   .run("pkgx install docker.com/cli")
   .arg("USER", "fluentci")
