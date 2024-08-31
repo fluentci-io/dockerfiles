@@ -41,6 +41,7 @@ COPY --from=docker:27-dind /usr/local/bin/ /usr/local/bin/
 VOLUME /var/lib/docker
 ENV DENO_DIR=/home/${USER}/.deno
 USER ${USER}
-RUN mkdir -p /home/${USER}/.deno
+RUN mkdir -p /home/${USER}/.deno/bin
+ENV PATH=${PATH}:/home/${USER}/.deno/bin
 CMD ["fluentci"]
 ENTRYPOINT ["/tini", "--", "entrypoint.sh"]

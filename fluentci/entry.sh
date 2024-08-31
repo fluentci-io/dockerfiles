@@ -19,7 +19,7 @@ case "$1" in
 
     sudo chown -R `whoami` $DOCKER_SOCKET
     sudo chown -R `whoami` /home/fluentci
-    sudo chown -R `whoami` /nix/var/nix
+    sudo chown -R `whoami` /nix/var
     sudo chown -R `whoami` /nix/store
     # if the first argument is a known fluentci command
     exec fluentci "$@";;
