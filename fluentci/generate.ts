@@ -11,6 +11,14 @@ const image = new Dockerfile()
   .run(
     "apt-get install -y --no-install-recommends ca-certificates iptables openssl pigz xz-utils"
   )
+  .run(
+    `curl --proto =https --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install linux --extra-conf "sandbox = false" --init none --no-confirm`
+  )
+  .env("PATH", "${PATH}:/nix/var/nix/profiles/default/bin")
+  .run(
+    "sed -i 's/auto-allocate-uids = true/auto-allocate-uids = false/g' /etc/nix/nix.conf"
+  )
+  .run("chmod -R 755 /nix/var/nix/profiles/per-user")
   .run("curl https://pkgx.sh | sh")
   .run("pkgx install docker.com/cli")
   .arg("USER", "fluentci")
