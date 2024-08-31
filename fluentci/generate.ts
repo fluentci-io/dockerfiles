@@ -1,9 +1,11 @@
 import { Dockerfile } from "https://deno.land/x/fluentdocker@v0.1.1/mod.ts";
 
 const DOCKER_VERSION = Deno.env.get("DOCKER_VERSION") || "27";
+const DAGGER_VERSION = Deno.env.get("DAGGER_VERSION") || "0.12.4";
+const DENO_VERSION = Deno.env.get("DENO_VERSION") || "1.45.5";
 
 const image = new Dockerfile()
-  .from("denoland/deno:ubuntu-1.44.0")
+  .from(`denoland/deno:ubuntu-${DENO_VERSION}`)
   .run("apt-get update")
   .run("apt-get install -y curl wget git sudo build-essential")
   .run(
@@ -36,16 +38,19 @@ const image = new Dockerfile()
   .run("which fluentci-studio")
   .run("fluentci-engine --version")
   .run(
-    "curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=0.12.0 sh"
+    `curl -L https://dl.dagger.io/dagger/install.sh | DAGGER_VERSION=${DAGGER_VERSION} sh`
   )
   .run("mv bin/dagger /usr/local/bin")
   .run("dagger version")
+  /*
   .run(
-    "deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json  https://raw.githubusercontent.com/fluentci-io/fluentci/main/main.ts -n fluentci"
-  )
+    "deno install -A -r -g --unstable-kv --import-map https://raw.githubusercontent.com/fluentci-io/fluentci/main/import_map.json https://github.com/fluentci-io/fluentci/raw/feat/new-project-from-examples/main.ts -n fluentci"
+  )*/
+
+  .run("deno install -A -r -g https://cli.fluentci.io -n fluentci")
   .copy("entry.sh", "/usr/local/bin/entrypoint.sh")
   .run("fluentci --version")
-  .workdir("/root")
+  .workdir("/home/${USER}")
   .env("DOCKER_TLS_CERTDIR", "/certs")
   .run("mkdir /certs /certs/client && chmod 1777 /certs /certs/client")
   .copy(
@@ -53,6 +58,7 @@ const image = new Dockerfile()
     "/usr/local/bin/"
   )
   .volume("/var/lib/docker")
+  .user("${USER}")
   .cmd(["fluentci"])
   .entrypoint(["/tini", "--", "entrypoint.sh"]);
 
